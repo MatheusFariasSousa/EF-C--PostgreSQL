@@ -8,7 +8,7 @@ namespace web_crud.Controllers;
 
 [ApiController]
 [Tags("User")]
-[Route("api/[controller])")]
+[Route("api/[controller]")]
 public class UserController : ControllerBase
 {
     private readonly UserContext _context;
@@ -79,7 +79,9 @@ public class UserController : ControllerBase
         {
             return NotFound();
         }
-        return Ok( _context.Users.Remove(user));
+         _context.Users.Remove(user);
+         _context.SaveChanges();
+        return Ok();
     }
 
 }
